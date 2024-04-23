@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPA Calculator</title>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>GPA Calculator</h2>
+    <div class="form-group">
+      <label for="crypto-grade">Cryptography and Cyber Security Grade:</label>
+      <input type="number" id="crypto-grade" class="grade-point" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="compiler-grade">Compiler Design Grade:</label>
+      <input type="number" id="compiler-grade" class="grade-point" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="networks-grade">Computer Networks Grade:</label>
+      <input type="number" id="networks-grade" class="grade-point" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="distributed-grade">Distributed Computing Grade:</label>
+      <input type="number" id="distributed-grade" class="grade-point" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="app-grade">App Development Grade:</label>
+      <input type="number" id="app-grade" class="grade-point" min="0" max="100">
+    </div>
+    <div class="form-group">
+      <label for="cloud-grade">Cloud Computing Grade:</label>
+      <input type="number" id="cloud-grade" class="grade-point" min="0" max="100">
+    </div>
+    
+    <button onclick="calculateGPA()">Calculate GPA</button>
+    <p>GPA: <span id="gpa"></span></p>
+  </div>
+
+  <script>
+    function calculateGPA() {
+      var grades = document.querySelectorAll('.grade-point');
+      var totalGradePoints = 0;
+      var totalCredits = 0;
+  
+      // Define credits for each subject
+      var credits = [3, 4, 4, 3, 3, 3]; // Cryptography, Compiler Design, Computer Networks, Distributed Computing, App Development, Cloud Computing
+  
+      grades.forEach(function(grade, index) {
+        var gradeValue = parseInt(grade.value) || 0;
+        var creditValue = credits[index];
+        totalGradePoints += gradeValue * creditValue;
+        totalCredits += creditValue;
+      });
+  
+      var gpa = totalGradePoints / totalCredits;
+      document.getElementById('gpa').textContent = gpa.toFixed(2); // Round GPA to two decimal places
+    }
+  </script>
+</body>
+</html>
